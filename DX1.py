@@ -49,15 +49,15 @@ def run_simulator(sim: sim_utils.SimulationContext, scene: InteractiveScene):
 
     while simulation_app.is_running():
 
-        robot.reset()
+        # robot.reset()
 
-        joint_position = robot.data.default_joint_pos.clone()
+        # joint_position = robot.data.default_joint_pos.clone()
         # print(joint_position)
         # joint_vel = robot.data.default_joint_vel.clone()
         # robot.write_joint_state_to_sim(joint_position, joint_vel)
 
-        robot.set_joint_position_target(joint_position, joint_ids=robot_entity_cfg.joint_ids)
-        scene.write_data_to_sim()
+        # robot.set_joint_position_target(joint_position, joint_ids=robot_entity_cfg.joint_ids)
+        # scene.write_data_to_sim()
 
         sim.step()
 

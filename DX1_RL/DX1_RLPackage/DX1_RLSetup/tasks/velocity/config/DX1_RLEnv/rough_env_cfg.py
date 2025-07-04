@@ -2,7 +2,6 @@ from isaaclab.utils import configclass
 
 from DX1_RLPackage.DX1_RLSetup.tasks.velocity.velocity_env_cfg import LocomotionVelocityRoughEnvCfg
 
-from isaaclab_assets.robots.anymal import ANYMAL_D_CFG
 from DX1_RLPackage.DX1_RLSetup.modelCfg.DX1 import DX1_CFG
 
 
@@ -13,7 +12,6 @@ class DX1_RoughEnvCfg(LocomotionVelocityRoughEnvCfg):
         super().__post_init__()
 
         self.scene.robot = DX1_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
-        # self.scene.robot = ANYMAL_D_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
 
         # In here redefine/overwrite some of the parameters set in velocity_env_cfg.py to customise for your robot
         self.scene.height_scanner.prim_path = "{ENV_REGEX_NS}/Robot/base_link"
@@ -21,10 +19,13 @@ class DX1_RoughEnvCfg(LocomotionVelocityRoughEnvCfg):
         self.events.base_external_force_torque.params["asset_cfg"].body_names = "base_link"
 
         self.terminations.base_contact.params["sensor_cfg"].body_names = "base_link"
-        
-        self.rewards.feet_air_time.params["sensor_cfg"].body_names = ["fl_3_2", "fr_3_1", "bl_3_1", "br_3_1"]
-        self.rewards.undesired_contacts.params["sensor_cfg"].body_names = ["fl_2_1", "fr_2_1", "bl_2_1", "br_2_1"]
-        self.events.add_base_mass.params["mass_distribution_params"] = (-0.1, 0.1)
+
+        # air_time should be for foot end effector, undesired_contact is for everything else
+        self.rewards.feet_air_time.params["sensor_cfg"].body_names = ["FL_foot", "FR_foot", "BL_foot", "BR_foot"]
+        self.rewards.undesired_contacts.params["sensor_cfg"].body_names = ["fl_2_1", "fr_2_1", "bl_2_1", "br_2_1", "fl_3_2", "fr_3_1", "bl_3_1", "br_3_1", "fl_1_1", "fr_1_1", "bl_1_1", "br_1_1"]
+        # self.rewards.undesired_contacts.params["sensor_cfg"].body_names = ["fl_2_1", "fr_2_1", "bl_2_1", "br_2_1"]
+
+        self.events.add_base_mass.params["mass_distribution_params"] = (-0.01, 0.01)
 
 
 @configclass

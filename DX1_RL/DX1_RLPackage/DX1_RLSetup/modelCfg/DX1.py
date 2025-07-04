@@ -4,12 +4,11 @@ from isaaclab.assets.articulation import ArticulationCfg
 import os
 from math import pi
 
-# motor_scale_factor = 2.1 # for ModelAssets2
 motor_scale_factor = 1.95 # for ModelAssets7
 
 DX1_CFG = ArticulationCfg(
     spawn=sim_utils.UsdFileCfg(
-        usd_path="/home/hy/Downloads/DX1_RL/ModelAssets7/DX1.usd",
+        usd_path="/home/hy/Downloads/DX1_RL/ModelAssets/DX1.usd",
         activate_contact_sensors=True,
         rigid_props=sim_utils.RigidBodyPropertiesCfg(
             rigid_body_enabled=True,
