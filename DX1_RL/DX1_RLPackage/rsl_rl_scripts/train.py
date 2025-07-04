@@ -1,8 +1,3 @@
-# Copyright (c) 2022-2025, The Isaac Lab Project Developers.
-# All rights reserved.
-#
-# SPDX-License-Identifier: BSD-3-Clause
-
 """Script to train RL agent with RSL-RL."""
 
 """Launch Isaac Sim Simulator first."""
@@ -63,7 +58,7 @@ from isaaclab.utils.io import dump_pickle, dump_yaml
 
 from isaaclab_rl.rsl_rl import RslRlOnPolicyRunnerCfg, RslRlVecEnvWrapper
 
-import HumanoidRLPackage.HumanoidRLSetup.tasks  # noqa: F401
+import DX1_RLPackage.DX1_RLSetup.tasks  # noqa: F401
 from isaaclab_tasks.utils import get_checkpoint_path
 from isaaclab_tasks.utils.hydra import hydra_task_config
 

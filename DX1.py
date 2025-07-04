@@ -12,22 +12,13 @@ import torch
 
 import isaaclab.sim as sim_utils
 from isaaclab.assets import AssetBaseCfg
-from isaaclab.controllers import DifferentialIKController, DifferentialIKControllerCfg
 from isaaclab.managers import SceneEntityCfg
-from isaaclab.markers import VisualizationMarkers
-from isaaclab.markers.config import FRAME_MARKER_CFG
 from isaaclab.scene import InteractiveScene, InteractiveSceneCfg
 from isaaclab.utils import configclass
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
 from isaaclab.utils.math import subtract_frame_transforms
 
-# from HumanoidRL.HumanoidRLPackage.HumanoidRLSetup.modelCfg.universal_robots import UR10_CFG
-# from HumanoidRL.HumanoidRLPackage.HumanoidRLSetup.modelCfg.franka import FRANKA_PANDA_HIGH_PD_CFG
-# from HumanoidRL.HumanoidRLPackage.HumanoidRLSetup.modelCfg.humanoid import HAND_CFG
 from DX1_RL.DX1_RLPackage.DX1_RLSetup.modelCfg.DX1 import DX1_CFG
-
-from isaaclab.utils.assets import ISAACLAB_NUCLEUS_DIR
-
 
 
 @configclass
@@ -35,7 +26,7 @@ class HandSceneCfg(InteractiveSceneCfg):
     ground = AssetBaseCfg(
         prim_path="/World/defaultGroundPlane",
         spawn=sim_utils.GroundPlaneCfg(),
-        init_state=AssetBaseCfg.InitialStateCfg(pos=(0.0, 0.0, -1.05)),
+        init_state=AssetBaseCfg.InitialStateCfg(pos=(0.0, 0.0, 0.0)),
     )
 
     dome_light = AssetBaseCfg(
@@ -43,35 +34,30 @@ class HandSceneCfg(InteractiveSceneCfg):
         spawn=sim_utils.DomeLightCfg(intensity=3000.0, color=(0.75, 0.75, 0.75))
     )
 
-    # table = AssetBaseCfg(
-    #     prim_path="{ENV_REGEX_NS}/Table",
-    #     spawn=sim_utils.UsdFileCfg(
-    #         usd_path=f"{ISAAC_NUCLEUS_DIR}/Props/Mounts/Stand/stand_instanceable.usd", scale=(1.0, 1.0, 1.0)
-    #     ),
-    # )
-
     robot = DX1_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
-    # robot1 = UR10_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
-    # robot = FRANKA_PANDA_HIGH_PD_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
 
 
 def run_simulator(sim: sim_utils.SimulationContext, scene: InteractiveScene):
     
-    # robot = scene["robot"]
+    robot = scene["robot"]
 
-    # robot_entity_cfg = SceneEntityCfg("robot", joint_names=[".*"], body_names=["ee_link"])
-    # robot_entity_cfg = SceneEntityCfg("robot", joint_names=["panda_joint.*"], body_names=["panda_hand"])
+    robot_entity_cfg = SceneEntityCfg("robot", joint_names=[".*"], body_names=[".*"])
 
-    # robot_entity_cfg.resolve(scene)
+    robot_entity_cfg.resolve(scene)
 
     sim_dt = sim.get_physics_dt()
 
     while simulation_app.is_running():
 
-        # joint_position = robot.data.default_joint_pos.clone()
+        robot.reset()
+
+        joint_position = robot.data.default_joint_pos.clone()
         # print(joint_position)
         # joint_vel = robot.data.default_joint_vel.clone()
         # robot.write_joint_state_to_sim(joint_position, joint_vel)
+
+        robot.set_joint_position_target(joint_position, joint_ids=robot_entity_cfg.joint_ids)
+        scene.write_data_to_sim()
 
         sim.step()
 
@@ -99,4 +85,4 @@ if __name__ == "__main__":
     simulation_app.close()
 
 
-# (env_isaaclab) hy@hy-LOQ-15IRX9:~/Downloads/DX1_RL$ PYTHONPATH=$(pwd) /home/hy/IsaacLab/isaaclab.sh -p DX1.py 
+# (env_isaaclab) hy@hy-LOQ-15IRX9:~/Downloads/DX1_RL$ /home/hy/IsaacLab/isaaclab.sh -p DX1.py 
