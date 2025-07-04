@@ -1,10 +1,6 @@
 import isaaclab.sim as sim_utils
-from isaaclab.actuators import ActuatorNetMLPCfg, DCMotorCfg, ImplicitActuatorCfg
+from isaaclab.actuators import DCMotorCfg
 from isaaclab.assets.articulation import ArticulationCfg
-import os
-from math import pi
-
-motor_scale_factor = 1.95 # for ModelAssets7
 
 DX1_CFG = ArticulationCfg(
     spawn=sim_utils.UsdFileCfg(
@@ -28,6 +24,7 @@ DX1_CFG = ArticulationCfg(
     ),
     init_state = ArticulationCfg.InitialStateCfg(
         pos=(0.0, 0.0, 0.19601),
+        # Commented out such that the joint position used will be the one defined in the usd itself
         # joint_pos={
         #     "Revolute_2": 0.0,
         #     "Revolute_3": 0.0,
@@ -44,38 +41,15 @@ DX1_CFG = ArticulationCfg(
         # },
     ),
     soft_joint_pos_limit_factor=0.9,
-    # actuators={
-    #     "base_legs": DCMotorCfg(
-    #         joint_names_expr=[".*"],
-    #         # joint_names_expr=[""],
-    #         effort_limit=25,
-    #         saturation_effort=25,
-    #         velocity_limit=21.0,
-    #         stiffness=60, # 25.0
-    #         damping=1.5, # 0.5
-    #         friction=0.0,
-    #     ),
-    # },
-    # actuators = {
-    #     "base_legs": DCMotorCfg(
-    #         joint_names_expr=[".*"],           # All joints
-    #         effort_limit=2.5,                  # ≈2.45 Nm, rounded up slightly
-    #         saturation_effort=2.5,             # Same as above
-    #         velocity_limit=5.0,                # Approximate max servo speed (adjust if known)
-    #         stiffness=20.0,                    # Depends on how rigid you want it to track positions
-    #         damping=0.5,                       # Light damping for smooth motion
-    #         friction=0.0,                      # Set if modeling static friction; 0 is fine for now
-    #     ),
-    # },
     actuators = {
         "base_legs": DCMotorCfg(
-            joint_names_expr=[".*"],           # All joints
-            effort_limit=1.5*motor_scale_factor,                  # ≈2.45 Nm, rounded up slightly
-            saturation_effort=1.5*motor_scale_factor,             # Same as above
-            velocity_limit=5.0*motor_scale_factor,                # Approximate max servo speed (adjust if known)
-            stiffness=20.0*motor_scale_factor,                    # Depends on how rigid you want it to track positions
-            damping=0.5*motor_scale_factor,                       # Light damping for smooth motion
-            friction=0.0,                      # Set if modeling static friction; 0 is fine for now
+            joint_names_expr=[".*"],
+            effort_limit=2.45,
+            saturation_effort=2.45,
+            velocity_limit=1.396,
+            stiffness=20.0,
+            damping=0.5,
+            friction=0.0,
         ),
-    },
+    }
 )
