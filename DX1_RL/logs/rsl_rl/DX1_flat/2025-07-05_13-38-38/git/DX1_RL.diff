@@ -1,0 +1,54 @@
+--- git status ---
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   DX1_RL/DX1_RLPackage/DX1_RLSetup/tasks/velocity/config/DX1_RLEnv/flat_env_cfg.py
+	modified:   DX1_RL/DX1_RLPackage/DX1_RLSetup/tasks/velocity/velocity_env_cfg.py
+	modified:   DX1_RL/logs/rsl_rl/DX1_flat/2025-07-04_22-22-52/exported/policy.pt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	DX1_RL/logs/rsl_rl/DX1_flat/2025-07-05_13-03-36/
+	DX1_RL/logs/rsl_rl/DX1_flat/2025-07-05_13-17-47/
+	DX1_RL/logs/rsl_rl/DX1_flat/2025-07-05_13-38-38/
+	DX1_RL/outputs/
+	ModelAssets2/
+
+no changes added to commit (use "git add" and/or "git commit -a") 
+
+
+--- git diff ---
+diff --git a/DX1_RL/DX1_RLPackage/DX1_RLSetup/tasks/velocity/config/DX1_RLEnv/flat_env_cfg.py b/DX1_RL/DX1_RLPackage/DX1_RLSetup/tasks/velocity/config/DX1_RLEnv/flat_env_cfg.py
+index 2a8c84d..0755bde 100644
+--- a/DX1_RL/DX1_RLPackage/DX1_RLSetup/tasks/velocity/config/DX1_RLEnv/flat_env_cfg.py
++++ b/DX1_RL/DX1_RLPackage/DX1_RLSetup/tasks/velocity/config/DX1_RLEnv/flat_env_cfg.py
+@@ -11,8 +11,8 @@ class DX1_FlatEnvCfg(DX1_RoughEnvCfg):
+ 
+         # override rewards
+         self.rewards.flat_orientation_l2.weight = -5.0
+-        self.rewards.dof_torques_l2.weight = -2.5e-5
+-        self.rewards.feet_air_time.weight = 0.5
++        self.rewards.dof_torques_l2.weight = -3.0e-5
++        self.rewards.feet_air_time.weight = 0.7
+         # change terrain to flat
+         self.scene.terrain.terrain_type = "plane"
+         self.scene.terrain.terrain_generator = None
+diff --git a/DX1_RL/DX1_RLPackage/DX1_RLSetup/tasks/velocity/velocity_env_cfg.py b/DX1_RL/DX1_RLPackage/DX1_RLSetup/tasks/velocity/velocity_env_cfg.py
+index 5c7c1e1..391d755 100644
+--- a/DX1_RL/DX1_RLPackage/DX1_RLSetup/tasks/velocity/velocity_env_cfg.py
++++ b/DX1_RL/DX1_RLPackage/DX1_RLSetup/tasks/velocity/velocity_env_cfg.py
+@@ -92,7 +92,7 @@ class CommandsCfg:
+ 
+ @configclass
+ class ActionsCfg:
+-    joint_pos = mdp.JointPositionActionCfg(asset_name="robot", joint_names=[".*"], scale=0.4, use_default_offset=True)
++    joint_pos = mdp.JointPositionActionCfg(asset_name="robot", joint_names=[".*"], scale=1.0, use_default_offset=True)
+ 
+ 
+ @configclass
+diff --git a/DX1_RL/logs/rsl_rl/DX1_flat/2025-07-04_22-22-52/exported/policy.pt b/DX1_RL/logs/rsl_rl/DX1_flat/2025-07-04_22-22-52/exported/policy.pt
+index bc1ba76..e3f5196 100644
+Binary files a/DX1_RL/logs/rsl_rl/DX1_flat/2025-07-04_22-22-52/exported/policy.pt and b/DX1_RL/logs/rsl_rl/DX1_flat/2025-07-04_22-22-52/exported/policy.pt differ
