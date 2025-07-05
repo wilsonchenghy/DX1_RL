@@ -1,0 +1,33 @@
+--- git status ---
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   DX1_RL/DX1_RLPackage/DX1_RLSetup/modelCfg/DX1.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	DX1_RL/logs/rsl_rl/DX1_flat/2025-07-04_20-58-32/
+	DX1_RL/outputs/
+
+no changes added to commit (use "git add" and/or "git commit -a") 
+
+
+--- git diff ---
+diff --git a/DX1_RL/DX1_RLPackage/DX1_RLSetup/modelCfg/DX1.py b/DX1_RL/DX1_RLPackage/DX1_RLSetup/modelCfg/DX1.py
+index 91203fc..8550352 100644
+--- a/DX1_RL/DX1_RLPackage/DX1_RLSetup/modelCfg/DX1.py
++++ b/DX1_RL/DX1_RLPackage/DX1_RLSetup/modelCfg/DX1.py
+@@ -44,8 +44,8 @@ DX1_CFG = ArticulationCfg(
+     actuators = {
+         "base_legs": DCMotorCfg(
+             joint_names_expr=[".*"],
+-            effort_limit=2.45*2,
+-            saturation_effort=2.45*2,
++            effort_limit=2.45*1.5,
++            saturation_effort=2.45*1.5,
+             velocity_limit=1.396,
+             stiffness=20.0,
+             damping=0.5,
