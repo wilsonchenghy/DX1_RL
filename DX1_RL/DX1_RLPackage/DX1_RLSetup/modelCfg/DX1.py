@@ -44,8 +44,8 @@ DX1_CFG = ArticulationCfg(
     actuators = {
         "base_legs": DCMotorCfg(
             joint_names_expr=[".*"],
-            effort_limit=2.45,
-            saturation_effort=2.45,
+            effort_limit=2.45*2,
+            saturation_effort=2.45*2,
             velocity_limit=1.396,
             stiffness=20.0,
             damping=0.5,
