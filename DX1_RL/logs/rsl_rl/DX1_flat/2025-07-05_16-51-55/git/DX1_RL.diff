@@ -6,12 +6,11 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
 	modified:   DX1_RL/DX1_RLPackage/DX1_RLSetup/tasks/velocity/velocity_env_cfg.py
-	modified:   DX1_RL/logs/rsl_rl/DX1_flat/2025-07-05_14-48-43/exported/policy.pt
+	modified:   DX1_RL/logs/rsl_rl/DX1_flat/2025-07-05_15-28-48/exported/policy.pt
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	DX1_RL/logs/rsl_rl/DX1_flat/2025-07-05_15-21-45/
-	DX1_RL/logs/rsl_rl/DX1_flat/2025-07-05_15-28-48/
+	DX1_RL/logs/rsl_rl/DX1_flat/2025-07-05_16-51-55/
 	DX1_RL/outputs/
 
 no changes added to commit (use "git add" and/or "git commit -a") 
@@ -19,18 +18,18 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 --- git diff ---
 diff --git a/DX1_RL/DX1_RLPackage/DX1_RLSetup/tasks/velocity/velocity_env_cfg.py b/DX1_RL/DX1_RLPackage/DX1_RLSetup/tasks/velocity/velocity_env_cfg.py
-index 1508127..a23df19 100644
+index a23df19..1e35e50 100644
 --- a/DX1_RL/DX1_RLPackage/DX1_RLSetup/tasks/velocity/velocity_env_cfg.py
 +++ b/DX1_RL/DX1_RLPackage/DX1_RLSetup/tasks/velocity/velocity_env_cfg.py
 @@ -92,7 +92,7 @@ class CommandsCfg:
  
  @configclass
  class ActionsCfg:
--    joint_pos = mdp.JointPositionActionCfg(asset_name="robot", joint_names=[".*"], scale=1.0, use_default_offset=True)
-+    joint_pos = mdp.JointPositionActionCfg(asset_name="robot", joint_names=[".*"], scale=0.5, use_default_offset=True)
+-    joint_pos = mdp.JointPositionActionCfg(asset_name="robot", joint_names=[".*"], scale=0.5, use_default_offset=True)
++    joint_pos = mdp.JointPositionActionCfg(asset_name="robot", joint_names=[".*"], scale=0.3, use_default_offset=True)
  
  
  @configclass
-diff --git a/DX1_RL/logs/rsl_rl/DX1_flat/2025-07-05_14-48-43/exported/policy.pt b/DX1_RL/logs/rsl_rl/DX1_flat/2025-07-05_14-48-43/exported/policy.pt
-index 00ac811..e8ab982 100644
-Binary files a/DX1_RL/logs/rsl_rl/DX1_flat/2025-07-05_14-48-43/exported/policy.pt and b/DX1_RL/logs/rsl_rl/DX1_flat/2025-07-05_14-48-43/exported/policy.pt differ
+diff --git a/DX1_RL/logs/rsl_rl/DX1_flat/2025-07-05_15-28-48/exported/policy.pt b/DX1_RL/logs/rsl_rl/DX1_flat/2025-07-05_15-28-48/exported/policy.pt
+index b520b2c..fa7463d 100644
+Binary files a/DX1_RL/logs/rsl_rl/DX1_flat/2025-07-05_15-28-48/exported/policy.pt and b/DX1_RL/logs/rsl_rl/DX1_flat/2025-07-05_15-28-48/exported/policy.pt differ
