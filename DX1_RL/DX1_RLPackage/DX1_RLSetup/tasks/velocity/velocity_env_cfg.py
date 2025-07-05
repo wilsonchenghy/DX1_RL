@@ -92,7 +92,7 @@ class CommandsCfg:
 
 @configclass
 class ActionsCfg:
-    joint_pos = mdp.JointPositionActionCfg(asset_name="robot", joint_names=[".*"], scale=0.7, use_default_offset=True)
+    joint_pos = mdp.JointPositionActionCfg(asset_name="robot", joint_names=[".*"], scale=0.4, use_default_offset=True)
 
 
 @configclass
@@ -231,8 +231,8 @@ class RewardsCfg:
     ang_vel_xy_l2 = RewTerm(func=mdp.ang_vel_xy_l2, weight=-0.05)
     dof_torques_l2 = RewTerm(func=mdp.joint_torques_l2, weight=-2.0e-5)
 
-    # dof_acc_l2 = RewTerm(func=mdp.joint_acc_l2, weight=-1.0e-7)
-    dof_acc_l2 = RewTerm(func=mdp.joint_acc_l2, weight=0.0)
+    dof_acc_l2 = RewTerm(func=mdp.joint_acc_l2, weight=-0.1e-7)
+    # dof_acc_l2 = RewTerm(func=mdp.joint_acc_l2, weight=0.0)
     
     action_rate_l2 = RewTerm(func=mdp.action_rate_l2, weight=-0.001)
     feet_air_time = RewTerm(
