@@ -1,0 +1,50 @@
+--- git status ---
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   DX1_RL/DX1_RLPackage/DX1_RLSetup/tasks/velocity/velocity_env_cfg.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	DX1_RL/logs/rsl_rl/DX1_flat/2025-07-05_14-28-53/
+	DX1_RL/logs/rsl_rl/DX1_flat/2025-07-05_14-42-59/
+	DX1_RL/logs/rsl_rl/DX1_flat/2025-07-05_14-48-43/
+	DX1_RL/outputs/
+
+no changes added to commit (use "git add" and/or "git commit -a") 
+
+
+--- git diff ---
+diff --git a/DX1_RL/DX1_RLPackage/DX1_RLSetup/tasks/velocity/velocity_env_cfg.py b/DX1_RL/DX1_RLPackage/DX1_RLSetup/tasks/velocity/velocity_env_cfg.py
+index 391d755..1508127 100644
+--- a/DX1_RL/DX1_RLPackage/DX1_RLSetup/tasks/velocity/velocity_env_cfg.py
++++ b/DX1_RL/DX1_RLPackage/DX1_RLSetup/tasks/velocity/velocity_env_cfg.py
+@@ -85,7 +85,7 @@ class CommandsCfg:
+         heading_control_stiffness=0.5,
+         debug_vis=True,
+         ranges=mdp.UniformVelocityCommandCfg.Ranges(
+-            lin_vel_x=(-1.0, 1.0), lin_vel_y=(-1.0, 1.0), ang_vel_z=(-1.0, 1.0), heading=(-math.pi, math.pi)
++            lin_vel_x=(-0.5, 0.5), lin_vel_y=(-0.5, 0.5), ang_vel_z=(-0.5, 0.5), heading=(-math.pi, math.pi)
+         ),
+     )
+ 
+@@ -189,7 +189,6 @@ class EventCfg:
+                 "x": (-0.5, 0.5),
+                 "y": (-0.5, 0.5),
+                 "z": (-0.5, 0.5),
+-                # "z": (0.1, 0.2),
+                 "roll": (-0.5, 0.5),
+                 "pitch": (-0.5, 0.5),
+                 "yaw": (-0.5, 0.5),
+@@ -211,7 +210,7 @@ class EventCfg:
+         func=mdp.push_by_setting_velocity,
+         mode="interval",
+         interval_range_s=(10.0, 15.0),
+-        params={"velocity_range": {"x": (-0.5, 0.5), "y": (-0.5, 0.5)}},
++        params={"velocity_range": {"x": (-0.25, 0.25), "y": (-0.25, 0.25)}},
+     )
+ 
+ 
