@@ -23,10 +23,6 @@ class DX1_RoughEnvCfg(LocomotionVelocityRoughEnvCfg):
 
         self.events.add_base_mass.params["mass_distribution_params"] = (-0.001, 0.001)
 
-        # current_arrow have weird scale
-        # velocity_current_arrow_scale = 1.0
-        # self.commands.base_velocity.current_vel_visualizer_cfg.markers["arrow"].scale = (velocity_current_arrow_scale, velocity_current_arrow_scale, velocity_current_arrow_scale)
-
 
 @configclass
 class DX1_RoughEnvCfg_PLAY(DX1_RoughEnvCfg):
